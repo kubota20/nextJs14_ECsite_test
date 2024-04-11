@@ -52,7 +52,7 @@ npx shadcn-ui@latest add button
 
 中身は...
 
-```
+```ruby:button.tsx
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
@@ -115,7 +115,7 @@ export { Button, buttonVariants }
 
 button.ts を使う場合
 
-```
+```ruby:page.tsx
 
 import { Button } from "@/components/ui/button";
 
