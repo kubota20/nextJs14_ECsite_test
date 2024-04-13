@@ -1,11 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { UserButton } from "@clerk/nextjs";
 
-export default function Home() {
+const SteupPage = () => {
   return (
     <div className="p-4">
-      <Button size="sm" variant="link">
-        クリック
-      </Button>
+      {/* UserButton サインアウトした後に移動する*/}
+      <UserButton afterSignOutUrl="/" />
     </div>
   );
-}
+};
+
+export default SteupPage;
