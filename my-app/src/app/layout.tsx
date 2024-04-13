@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
+import { jaJP } from "@clerk/localizations";
+
 import { cn } from "@/lib/utils";
 import "./globals.css";
 
@@ -21,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider localization={jaJP}>
       <html lang="ja">
         <body
           className={cn(
