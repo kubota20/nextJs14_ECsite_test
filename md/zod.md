@@ -11,7 +11,7 @@ npm i @hookform/resolvers
 
 ### 使い方
 
-```
+```ruby
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
