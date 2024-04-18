@@ -14,13 +14,10 @@ import { create } from 'zustand';
 
 type State = {
   bears: number;
-};
-
-type Action = {
   increaseBear: (by: number) => void;
 };
 
-export const useStore = create<State & Action>()((set) => ({
+export const useStore = create<State>((set) => ({
   bears: 0,
   increaseBear: (by) => set((state) => ({ bears: state.bears + by })),
 }));
@@ -45,6 +42,10 @@ export const Zustand = () => {
 };
 
 ```
+
+### クライアント側とサーバー側での使い分け
+
+上記のコードではサーバー側では使えますが、クライアント側`"use client"`が書いてある場所ではエラーでます。
 
 ## middleware
 
