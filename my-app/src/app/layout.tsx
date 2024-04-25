@@ -6,7 +6,6 @@ import { jaJP } from "@clerk/localizations";
 
 import { cn } from "@/lib/utils";
 import "./globals.css";
-import { ModalProvider } from "@/providers/modal-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,7 +31,6 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          <ModalProvider />
           {children}
         </body>
       </html>

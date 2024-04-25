@@ -1,20 +1,25 @@
 "use client";
 import { useEffect } from "react";
 
-import { Modal } from "@/components/ui/modal";
 import { useStoreModal } from "@/hooks/use-store-modal";
+
+import { StoreModal } from "@/components/modals/store-modal";
 
 const SteupPage = () => {
   const onOpen = useStoreModal((state) => state.onOpen);
   const isOpen = useStoreModal((state) => state.isOpen);
 
   useEffect(() => {
-    if (isOpen) {
+    if (!isOpen) {
       onOpen();
     }
   }, [isOpen, onOpen]);
 
-  return <div className="p-4">root page</div>;
+  return (
+    <div className="p-4">
+      <StoreModal />
+    </div>
+  );
 };
 
 export default SteupPage;
