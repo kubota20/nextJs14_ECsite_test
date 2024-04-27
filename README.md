@@ -17,3 +17,5 @@ next.js や shadcn/ui を使った環境構築の流れは[ここで確認](md/s
 2.2, 認証方法は Clerk を使っていきます。Clerk は[ここで確認](md/clerk.md)
 
 3, zustand で状態管理ライブラリを使う。[ここで確認](md/zustand.md)
+
+4, Prisma でデータベースのやり取りをより簡単かつ安全に行えるようにします。[ここで確認](md/prisma.md)
