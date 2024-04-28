@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "入力してください (2文字以上)" }),
@@ -42,10 +43,12 @@ export const StoreModal = () => {
 
       const respose = await axios.post("/api/stores", values);
 
-      console.log(respose.data);
+      toast.success("ストアが作成されました");
     } catch (error) {
-      console.log(values);
+      toast.error("何らかの問題が発生しました");
 
+      setLoading(false);
+    } finally {
       setLoading(false);
     }
   };
