@@ -15,11 +15,7 @@ const SteupPage = () => {
     }
   }, [isOpen, onOpen]);
 
-  return (
-    <div className="p-4">
-      <StoreModal />
-    </div>
-  );
+  return <div className="p-4">Root page</div>;
 };
 
 export default SteupPage;
