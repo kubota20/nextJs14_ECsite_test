@@ -155,7 +155,7 @@ npx prisma studio
 
 ```
 
-#### テーブルに追加や変更があれば
+#### テーブルに追加や変更
 
 もしデータベーススキーマが変更があれば、Prisma クライアントを再生成する必要があります。
 
@@ -164,3 +164,34 @@ npx prisma studio
 npx prisma generate
 
 ```
+
+#### テーブルの中身をリセット
+
+テーブルの中身をリセットしたい場合に
+
+```
+
+npx prisma migrate reset
+
+```
+
+`Are you sure you want to reset your database?`データーベースをリセットしたいか聞かれるので
+`y`(yes)と入力します。
+
+この時`prismaのファイルや書いたテーブルとかは消えない`ので大丈夫です。
+
+リセットしてまったままじゃ使えないのでまた追加していきます
+
+```
+
+npx prisma generate
+
+```
+
+```
+
+npx prisma db push
+
+```
+
+これで問題なくデータベースが使えます。
