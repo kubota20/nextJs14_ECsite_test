@@ -43,8 +43,6 @@ export const StoreModal = () => {
 
       const respose = await axios.post("/api/stores", values);
 
-      // toast.success("ストアが作成されました");
-
       // 新しいページに移動します
       window.location.assign(`${respose.data.id}`);
     } catch (error) {
@@ -58,8 +56,8 @@ export const StoreModal = () => {
 
   return (
     <Modal
-      title="CreateStore"
-      description="aaaaa"
+      title="作成"
+      description="お店の名前を決めてください"
       isOpen={storeModal.isOpen}
       onClose={storeModal.onClose}
     >
@@ -74,7 +72,7 @@ export const StoreModal = () => {
                   <FormItem>
                     <FormLabel>Name</FormLabel>
                     <FormControl>
-                      <Input disabled={loading} placeholder="名前" {...field} />
+                      <Input disabled={loading} placeholder="Name" {...field} />
                     </FormControl>
                     {/*FormMessage エラーメッセージ */}
                     <FormMessage />

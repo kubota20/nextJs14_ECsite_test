@@ -3,9 +3,9 @@ import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 export default async function SetupLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   const { userId } = auth();
 
   if (!userId) {
@@ -20,7 +20,7 @@ export default async function SetupLayout({
     },
   });
 
-  // idが一致していればstoreidのページに行く
+  // idを参照してstoreidのページに行く
   if (store) {
     redirect(`/${store.id}`);
   }

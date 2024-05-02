@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 export default async function AuthLayout({
   children,
   params,
-}: Readonly<{
+}: {
   children: React.ReactNode;
   params: { storeId: string };
-}>) {
+}) {
   const { userId } = auth();
 
   if (!userId) {
