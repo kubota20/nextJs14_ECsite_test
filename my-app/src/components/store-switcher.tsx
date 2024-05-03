@@ -23,7 +23,6 @@ import {
 
 // Icon
 import { Check, ChevronsUpDownIcon, PlusCircle, StoreIcon } from "lucide-react";
-import Link from "next/link";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -48,14 +47,23 @@ export default function StoreSwitcher({
   }));
 
   const [open, setOpen] = useState(false);
+
   // find 条件の一致すれば
   // つまりPrismaで作ったStoreのIDとparamsの[storeId]が一致すればイベントが起こる
   const currentStore = fromattedItems.find(
     (item) => item.value === params.storeId
   );
 
-  const onStoreClick = (store: { value: string; label: string }) => {
+  // 作成されてあるストアのリンクに飛びます
+  const onStoreSelect = (store: { value: string; label: string }) => {
+    setOpen(false);
     router.push(`/${store.value}`);
+  };
+
+  // ストア作成するためのモーダルが出てきます
+  const onStoreCreate = () => {
+    setOpen(false);
+    storeModal.onOpen();
   };
 
   return (
@@ -81,22 +89,15 @@ export default function StoreSwitcher({
             <CommandEmpty>No store found</CommandEmpty>
             <CommandGroup heading="Stores">
               {fromattedItems.map((store) => (
-                <div key={store.value} className="flex items-center px-3">
-                  <StoreIcon
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      currentStore?.value === store.value ? "" : "text-gray-400"
-                    )}
-                  />
-                  <Button
-                    variant="link"
-                    onClick={() => onStoreClick(store)}
-                    className={cn(
-                      currentStore?.value === store.value ? "" : "text-gray-400"
-                    )}
-                  >
-                    {store.label}
-                  </Button>
+                // <div key={store.value} className="flex items-center px-3">
+                <CommandItem
+                  key={store.value}
+                  onSelect={() => onStoreSelect(store)}
+                >
+                  <StoreIcon className="mr-2 h-4 w-4" />
+
+                  {store.label}
+
                   <Check
                     className={cn(
                       "ml-auto h-4 w-4",
@@ -105,7 +106,7 @@ export default function StoreSwitcher({
                         : "opacity-0"
                     )}
                   />
-                </div>
+                </CommandItem>
               ))}
             </CommandGroup>
           </CommandList>
@@ -113,12 +114,10 @@ export default function StoreSwitcher({
           <CommandSeparator />
           <CommandList>
             <CommandGroup>
-              <div className="w-full text-center">
-                <Button size="sm" onClick={storeModal.onOpen}>
-                  <PlusCircle className="mr-2 h-5 w-5" />
-                  ストアを作成
-                </Button>
-              </div>
+              <CommandItem onSelect={onStoreCreate}>
+                <PlusCircle className="mr-2 h-5 w-5" />
+                ストアを作成
+              </CommandItem>
             </CommandGroup>
           </CommandList>
         </Command>
