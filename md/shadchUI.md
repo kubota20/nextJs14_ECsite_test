@@ -132,3 +132,34 @@ export default function Home() {
 ```
 
 使ってみて、簡単に導入できるしスタイルのカスタマイズが簡単だからめちゃオススメ、TailwindCSS での書き方を覚えないといけないけど,css や sass の書き方が分かれば直ぐにできる。
+
+## Command コンポーネント使用時の Class エラー
+
+Command コンポーネントの`CommandItem`使用時、このコンポーネントが機能しない事がありましたプロパティにイベントを追加しても機能せず色もグレーのまま、調べると`ClassName`の方に問題がありました。
+
+```ruby
+
+const CommandItem = React.forwardRef<
+  React.ElementRef<typeof CommandPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Item>
+>(({ className, ...props }, ref) => (
+  <CommandPrimitive.Item
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled='true']:opacity-50",
+      className
+
+    )}
+    {...props}
+  />
+));
+
+```
+
+`data-[disabled]`を`data-[disabled='true']`に修正しました。
+
+`shadcn/ui`では Command コンポーネントに`cmdk`が採用されています。これは cmdk に v0.2.0 から v1.0.0 への重大な変更があり,
+その変更内容が`data-disabled: undefined | trueたdata-disabled: true | false`
+が追加され`data-[disabled='true']`という書き方に変わりましたが、`shadcn/ui`ではこれの変更が採用されてなく前のバージョンのクラスのままだったみたいです。(この問題の修正を何人も依頼したみたいですがまだ修正されていません。2024/5/1)
+
+[Command Class エラー参考](https://github.com/shadcn-ui/ui/discussions/2976)
