@@ -61,39 +61,37 @@ export const StoreModal = () => {
       isOpen={storeModal.isOpen}
       onClose={storeModal.onClose}
     >
-      <div>
-        <div className="space-y-4 py-2 pb-4">
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input disabled={loading} placeholder="Name" {...field} />
-                    </FormControl>
-                    {/*FormMessage エラーメッセージ */}
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                <Button
-                  disabled={loading}
-                  variant="outline"
-                  onClick={storeModal.onClose}
-                >
-                  キャンセル
-                </Button>
-                <Button disabled={loading} type="submit">
-                  次
-                </Button>
-              </div>
-            </form>
-          </Form>
-        </div>
+      <div className="space-y-4 py-2 pb-4">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input disabled={loading} placeholder="Name" {...field} />
+                  </FormControl>
+                  {/*FormMessage エラーメッセージ */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="pt-6 space-x-2 flex items-center justify-end w-full">
+              <Button
+                disabled={loading}
+                variant="outline"
+                onClick={storeModal.onClose}
+              >
+                キャンセル
+              </Button>
+              <Button disabled={loading} type="submit">
+                次
+              </Button>
+            </div>
+          </form>
+        </Form>
       </div>
     </Modal>
   );
