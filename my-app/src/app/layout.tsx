@@ -33,9 +33,9 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
+          {children}
           <ToasterProvider />
           <ModalProvider />
-          {children}
         </body>
       </html>
     </ClerkProvider>
