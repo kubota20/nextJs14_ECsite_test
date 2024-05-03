@@ -1,5 +1,6 @@
 // "use client";
 
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
@@ -33,8 +34,10 @@ export const Modal = ({
     <Dialog open={isOpen} onOpenChange={onChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <div className={cn("text-center")}>
+            <DialogTitle>{title}</DialogTitle>
+            <DialogDescription>{description}</DialogDescription>
+          </div>
           <div>{children}</div>
         </DialogHeader>
       </DialogContent>
