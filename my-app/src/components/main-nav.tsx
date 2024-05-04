@@ -15,7 +15,12 @@ export function MainNav({
     {
       href: `/${params.storeId}`,
       label: "概要",
-      active: pathName === `/${params.storeId}/setting`,
+      active: pathName === `/${params.storeId}`,
+    },
+    {
+      href: `/${params.storeId}/billboards`,
+      label: "掲示板",
+      active: pathName === `/${params.storeId}/billboard`,
     },
     {
       href: `/${params.storeId}/settings`,
