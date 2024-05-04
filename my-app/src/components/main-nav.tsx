@@ -13,8 +13,13 @@ export function MainNav({
 
   const routes = [
     {
+      href: `/${params.storeId}`,
+      label: "概要",
+      active: pathName === `/${params.storeId}/setting`,
+    },
+    {
       href: `/${params.storeId}/settings`,
-      label: "settings",
+      label: "設定",
       active: pathName === `/${params.storeId}/setting`,
     },
   ];
