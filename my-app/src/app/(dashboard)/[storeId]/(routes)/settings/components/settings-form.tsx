@@ -140,7 +140,7 @@ const SettingsForm: React.FC<SettingsFormPageProps> = ({ initiaData }) => {
       <Separator />
       <ApiAlert
         title="NEXT_PUBLIC_API_URL"
-        description="test-desc"
+        description={`${origin}/api/${params.storeId}`}
         variant="public"
       />
     </>
