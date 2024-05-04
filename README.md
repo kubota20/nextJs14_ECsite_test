@@ -18,4 +18,6 @@ next.js や shadcn/ui を使った環境構築の流れは[ここで確認](md/s
 
 3, zustand で状態管理ライブラリを使う。[ここで確認](md/zustand.md)
 
-4, Prisma でデータベースのやり取りをより簡単かつ安全に行えるようにします。[ここで確認](md/prisma.md)
+4, Prisma でデータベースのやり取りをより簡単かつ安全に行えるようにします。(mysql も少しだけ書いてある)[ここで確認](md/prisma.md)
+
+5, Cloudinary で保管・一元管理や変換や最適化、CDN で高速配信を行う
