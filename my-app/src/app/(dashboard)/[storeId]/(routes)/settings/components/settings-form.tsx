@@ -25,6 +25,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import AlertModal from "@/components/modals/alert-modal";
 
 interface SettingsFormPageProps {
   initiaData: Store;
@@ -48,6 +49,7 @@ const SettingsForm: React.FC<SettingsFormPageProps> = ({ initiaData }) => {
     defaultValues: initiaData,
   });
 
+  // お店の名前変更
   const onSubmit = async (data: SettingsFormValues) => {
     try {
       setLoading(true);
@@ -63,10 +65,37 @@ const SettingsForm: React.FC<SettingsFormPageProps> = ({ initiaData }) => {
     }
   };
 
+  // お店の削除
+  const onDelete = async () => {
+    try {
+      setLoading(true);
+      await axios.delete(`/api/stores/${params.storeId}`);
+
+      router.refresh();
+      // 削除されたら残ってるお店のページに行き
+      // 全て削除されたらホームページに戻る
+      router.push("/");
+      toast.success("お店が削除されました");
+    } catch (error) {
+      toast.error(
+        "エラーが起きました。すべての製品とカテゴリのフィルターを削除したことを確認してください"
+      );
+    } finally {
+      setLoading(false);
+      setOpen(false);
+    }
+  };
+
   return (
     <>
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+      />
       <div className="flex items-center justify-between">
-        <Heading title="settings" description="ストアの設定" />
+        <Heading title="設定" description="ストアの設定" />
         <Button
           disabled={loading}
           variant="destructive"
