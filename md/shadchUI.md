@@ -159,7 +159,7 @@ const CommandItem = React.forwardRef<
 `data-[disabled]`を`data-[disabled='true']`に修正しました。
 
 `shadcn/ui`では Command コンポーネントに`cmdk`が採用されています。これは cmdk に v0.2.0 から v1.0.0 への重大な変更があり,
-その変更内容が`data-disabled: undefined | trueたdata-disabled: true | false`
+その変更内容が`data-disabled: undefined | trueとdata-disabled: true | false`
 が追加され`data-[disabled='true']`という書き方に変わりましたが、`shadcn/ui`ではこれの変更が採用されてなく前のバージョンのクラスのままだったみたいです。(この問題の修正を何人も依頼したみたいですがまだ修正されていません。2024/5/1)
 
 [Command Class エラー参考](https://github.com/shadcn-ui/ui/discussions/2976)
