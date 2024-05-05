@@ -62,15 +62,24 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
     },
   });
 
-  // お店の名前変更
+  // 更新・作成
   const onSubmit = async (data: BillboardFormValues) => {
     try {
       setLoading(true);
-      await axios.patch(`/api/stores/${params.storeId}`, data);
+      if (initiaData) {
+        // 既存のデータを更新
+        await axios.patch(
+          `/api/stores/${params.storeId}/billboards/${params.billboardId}`,
+          data
+        );
+      } else {
+        // 新しいデータを作成
+        await axios.post(`/api/stores/${params.storeId}/billboards`, data);
+      }
       // 中身の更新
       router.refresh();
 
-      toast.success("更新しました");
+      toast.success(toastMessage);
     } catch (error) {
       toast.error("何か問題が発生しました、やり直して下さい。");
     } finally {
@@ -78,21 +87,21 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
     }
   };
 
-  // お店の削除
+  // 削除
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/stores/${params.storeId}`);
+      await axios.delete(
+        `/api/${params.storeId}/billboards/${params.billboardId}`
+      );
 
       router.refresh();
       // 削除されたら残ってるお店のページに行き
       // 全て削除されたらホームページに戻る
       router.push("/");
-      toast.success("お店が削除されました");
+      toast.success("削除されました");
     } catch (error) {
-      toast.error(
-        "エラーが起きました。すべての製品とカテゴリのフィルターを削除したことを確認してください"
-      );
+      toast.error("エラーが起きました");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -126,6 +135,7 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
+          {/* 画像のアップロード */}
           <FormField
             control={form.control}
             name="imageUrl"
@@ -145,6 +155,8 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
               </FormItem>
             )}
           />
+
+          {/* Label Input */}
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
