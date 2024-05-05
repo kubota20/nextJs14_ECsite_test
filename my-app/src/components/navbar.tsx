@@ -1,4 +1,5 @@
-import { UserButton, auth } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { MainNav } from "./main-nav";
 import StoreSwitcher from "./store-switcher";
 import { redirect } from "next/navigation";
