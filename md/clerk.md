@@ -79,3 +79,37 @@ npm install @clerk/localizations
 ```
 
 他やり方は[Clerk ドキュメント](https://clerk.com/docs/references/nextjs/overview)や[Component Reference](https://clerk.com/docs/components/overview)で確認してください。
+
+## authMiddleware() このメソッドは現在非推奨
+
+clerk で`authMiddleware()` このメソッドは非推奨になりました。代わりに使うのが`clerkMiddleware()`になります。
+しかしこの clerkMiddleware()メソッドは`@clerk/nextjs`のバージョン４には無く`バージョン５`にアップグレードする必要があります。
+
+```
+
+npm install @clerk/nextjs@latest
+
+```
+
+これでアップグレードできました。
+しかしこれで終わりじゃありません。少し書き方が変わります。
+
+```
+import { clerkMiddleware } from "@clerk/nextjs/server";
+
+export default clerkMiddleware();
+
+export const config = {
+  matcher: ["/((?!.+.[w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+};
+
+```
+
+```
+
+import { UserButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
+
+```
+
+以前はインポートする時`@clerk/nextjs`だけで大丈夫でしたが、今はクライアントとサーバー側に分ける必要がありクライアント側はは`@clerk/nextjs`サーバー側は`@clerk/nextjs/server`になります。
