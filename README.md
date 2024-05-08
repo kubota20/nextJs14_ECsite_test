@@ -10,9 +10,13 @@ youtube みながらそっくりそのままなのは物足りなさを感じた
 
 ### 違うところ
 
-1, 認証機能 Clerk の英語表記を`日本語表記`に変えてます
+1, Next 13 じゃなく Next 14 を使用
 
-2, PlanetScale で MySQL のデータベース管理を PlanetScale 使わず`自分でデータベースを管理`
+2, 認証機能 Clerk の英語表記を`日本語表記`に変えてます
+
+3, Clerk の v4.29 から v5 に変更
+
+4, PlanetScale で MySQL のデータベース管理を PlanetScale 使わず`自分でデータベースを管理`
 
 ## 作成手順
 
@@ -30,4 +34,12 @@ next.js や shadcn/ui を使った環境構築の流れは[ここで確認](md/s
 
 4, Prisma でデータベースのやり取りをより簡単かつ安全に行えるようにします。(mysql も少しだけ書いてある)[ここで確認](md/prisma.md)
 
-5, Cloudinary で保管・一元管理や変換や最適化、CDN で高速配信を行う
+5, Zod と react-hook-form を使ってスキーマ宣言とデータ検証[ここで確認](md/zod.md)
+
+6, API route を使って Prisma で作ったテーブルを使って ID の取得や削除を作る[ここで確認](my-app/src/app/api/stores)
+
+6, Cloudinary で保管・一元管理や変換や最適化、CDN で高速配信を行う[ここで確認](md/cloudinary.md)
+
+7, Prisma で Billboard テーブルを作成[ここで確認](my-app/prisma/schema.prisma)
+
+8, Billboard テーブルを使って API route で
