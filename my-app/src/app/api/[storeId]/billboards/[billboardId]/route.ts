@@ -2,6 +2,37 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+// billboard id を取得
+export async function GET(
+  req: Request,
+  { params }: { params: { billboardId: string } }
+) {
+  try {
+    // billboardIdに問題がある場合
+    if (!params.billboardId) {
+      return new NextResponse("Store id is required", { status: 400 });
+    }
+
+    // findUnique 取得 一意の識別子またはIDを指定する必要がある
+    const billboard = await prismadb.billboard.findUnique({
+      where: {
+        id: params.billboardId,
+      },
+    });
+
+    // id 問題がある場合
+    if (!billboard) {
+      return new NextResponse("Unauthorized", { status: 403 });
+    }
+
+    return NextResponse.json(billboard);
+  } catch (error) {
+    console.log("[BILLBOARD_GET]", error);
+    return new NextResponse("Internal Error", { status: 500 });
+  }
+}
+
+// billboard 修正
 export async function PATCH(
   req: Request,
   { params }: { params: { storeId: string; billboardId: string } }
@@ -68,6 +99,7 @@ export async function PATCH(
   }
 }
 
+// billboard 消す
 export async function DELETE(
   req: Request,
   { params }: { params: { storeId: string; billboardId: string } }
