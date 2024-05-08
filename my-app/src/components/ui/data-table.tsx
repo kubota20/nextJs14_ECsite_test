@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 import {
   ColumnDef,
   flexRender,
@@ -7,6 +9,9 @@ import {
   useReactTable,
   // ページネーション
   getPaginationRowModel,
+  // 電子メールをフィルターするための検索入力
+  ColumnFiltersState,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
 
 import {
@@ -19,6 +24,7 @@ import {
 } from "@/components/ui/table";
 
 import { Button } from "./button";
+import { Input } from "./input";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -31,15 +37,36 @@ export function DataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    // ページネーション
     getPaginationRowModel: getPaginationRowModel(),
+    // 電子メールをフィルターするための検索入力
+    onColumnFiltersChange: setColumnFilters,
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      columnFilters,
+    },
   });
 
   return (
     <div>
+      {/* 電子メールをフィルターするための検索入力 */}
+      <div className="flex items-center py-4">
+        <Input
+          placeholder="Filter emails..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          onChange={(event) =>
+            table.getColumn("email")?.setFilterValue(event.target.value)
+          }
+          className="max-w-sm"
+        />
+      </div>
+      {/* メインテーブル */}
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -90,6 +117,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
+      {/* ページネーション */}
       <div className="flex items-center justify-end space-x-2 py-4">
         <Button
           variant="outline"
