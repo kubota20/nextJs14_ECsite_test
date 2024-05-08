@@ -26,6 +26,7 @@ import {
 import { Button } from "./button";
 import { Input } from "./input";
 
+// Icon
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
