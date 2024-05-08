@@ -26,8 +26,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import AlertModal from "@/components/modals/alert-modal";
-import { ApiAlert } from "@/components/ui/api-alert";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
 const formScheme = z.object({
@@ -44,7 +42,6 @@ type BillboardFormValues = z.infer<typeof formScheme>;
 const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
   const params = useParams();
   const router = useRouter();
-  const origin = useOrigin();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -69,15 +66,17 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
       if (initiaData) {
         // 既存のデータを更新
         await axios.patch(
-          `/api/stores/${params.storeId}/billboards/${params.billboardId}`,
+          `/api/${params.storeId}/billboards/${params.billboardId}`,
           data
         );
       } else {
         // 新しいデータを作成
-        await axios.post(`/api/stores/${params.storeId}/billboards`, data);
+        await axios.post(`/api/${params.storeId}/billboards`, data);
       }
       // 中身の更新
       router.refresh();
+      // billboardsページに飛ぶ
+      router.push(`/${params.storeId}/billboards`);
 
       toast.success(toastMessage);
     } catch (error) {
@@ -183,11 +182,6 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
         </form>
       </Form>
       <Separator />
-      {/* <ApiAlert
-        title="NEXT_PUBLIC_API_URL"
-        description={`${origin}/api/${params.storeId}`}
-        variant="public"
-      /> */}
     </>
   );
 };
