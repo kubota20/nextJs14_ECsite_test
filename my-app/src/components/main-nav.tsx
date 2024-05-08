@@ -19,8 +19,8 @@ export function MainNav({
     },
     {
       href: `/${params.storeId}/billboards`,
-      label: "掲示板",
-      active: pathName === `/${params.storeId}/billboard`,
+      label: "画像",
+      active: pathName === `/${params.storeId}/billboards`,
     },
     {
       href: `/${params.storeId}/settings`,
