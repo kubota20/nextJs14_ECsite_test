@@ -7,15 +7,24 @@ import { Heading } from "@/components/ui/heading";
 import { Separator } from "@/components/ui/separator";
 import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
+import { BillboardColumnProps, columns } from "./columns";
+import { DataTable } from "@/components/ui/data-table";
 
-export const BillboardClient = () => {
+// data初期のtypeの確認に使いました
+// import { Billboard } from "@prisma/client";
+
+interface BillboardClientProps {
+  data: BillboardColumnProps[];
+}
+
+export const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
   const router = useRouter();
   const params = useParams();
 
   return (
     <>
       <div className="flex items-center justify-between">
-        <Heading title="掲示板" description="あなたのお店の感想やコメント" />
+        <Heading title={`画像 (${data.length})`} description="あなたの画像" />
         <Button
           onClick={() => router.push(`/${params.storeId}/billboards/new`)}
         >
@@ -23,7 +32,10 @@ export const BillboardClient = () => {
           追加
         </Button>
       </div>
+      {/* スペース */}
       <Separator />
+      {/* スペース */}
+      <DataTable columns={columns} data={data} />
     </>
   );
 };
