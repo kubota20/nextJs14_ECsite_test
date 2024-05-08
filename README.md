@@ -38,8 +38,8 @@ next.js や shadcn/ui を使った環境構築の流れは[ここで確認](md/s
 
 6, API route を使って Prisma で作ったテーブルを使って ID の取得や削除を作る[ここで確認](my-app/src/app/api/stores)
 
-6, Cloudinary で保管・一元管理や変換や最適化、CDN で高速配信を行う[ここで確認](md/cloudinary.md)
+7, Cloudinary で保管・一元管理や変換や最適化、CDN で高速配信を行う[ここで確認](md/cloudinary.md)
 
-7, Prisma で Billboard テーブルを作成[ここで確認](my-app/prisma/schema.prisma)
+8, Prisma で Billboard テーブルを作成[ここで確認](my-app/prisma/schema.prisma)
 
-8, Billboard テーブルを使って API route で
+9, Billboard テーブルを使って API route を作ります[ここで確認](my-app/src/app/api/[storeId]/billboards)
