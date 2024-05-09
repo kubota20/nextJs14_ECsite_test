@@ -95,9 +95,9 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
       );
 
       router.refresh();
-      // 削除されたら残ってるお店のページに行き
-      // 全て削除されたらホームページに戻る
-      router.push("/");
+
+      // 削除されたら画像ページに行き
+      router.push(`${params.storeId}/billboards`);
       toast.success("削除されました");
     } catch (error) {
       toast.error("エラーが起きました");
