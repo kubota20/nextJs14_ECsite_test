@@ -23,11 +23,17 @@ export function MainNav({
       active: pathName === `/${params.storeId}/billboards`,
     },
     {
+      href: `/${params.storeId}/caregories`,
+      label: "カテゴリ",
+      active: pathName === `/${params.storeId}/caregories`,
+    },
+    {
       href: `/${params.storeId}/settings`,
       label: "設定",
       active: pathName === `/${params.storeId}/setting`,
     },
   ];
+
   return (
     <nav className={cn("flex item-center space-x-4 lg:space-x-6", className)}>
       {routes.map((route) => (
