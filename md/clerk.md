@@ -94,7 +94,8 @@ npm install @clerk/nextjs@latest
 これでアップグレードできました。
 しかしこれで終わりじゃありません。少し書き方が変わります。
 
-```
+```ruby
+
 import { clerkMiddleware } from "@clerk/nextjs/server";
 
 export default clerkMiddleware();
@@ -105,7 +106,7 @@ export const config = {
 
 ```
 
-```
+```ruby
 
 import { UserButton } from "@clerk/nextjs";
 import { auth } from "@clerk/nextjs/server";
@@ -119,7 +120,7 @@ import { auth } from "@clerk/nextjs/server";
 `clerkMiddleware()`はミドルウェアを通じて Clerk 認証を Next.js アプリケーションに統合します。
 `App router`と `Pages router`の両方に使えます
 
-```
+```ruby
 
 import { clerkMiddleware } from '@clerk/nextjs/server';
 
@@ -140,7 +141,7 @@ export const config = {
 
 実際の例が...
 
-```
+```ruby
 
 const isProtectedRoute = createRouteMatcher([
   '/dashboard(.*)',
@@ -161,7 +162,7 @@ const isProtectedRoute = createRouteMatcher([
 
 2, `auth().userId` ユーザー認証ステータスに基づいてアプリの動作をより詳細に制御したい場合に使用します。
 
-```r
+```ruby
 
 import {
   clerkMiddleware,
@@ -191,7 +192,7 @@ export const config = {
 
 2, `auth().has()` 承認ステータスに基づいてアプリの動作をより詳細に制御したい場合に使用します。
 
-```r
+```ruby
 
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
