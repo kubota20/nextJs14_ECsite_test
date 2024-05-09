@@ -9,6 +9,7 @@ import { Plus } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { BillboardColumnProps, columns } from "./columns";
 import { DataTable } from "@/components/ui/data-table";
+import { ApiList } from "@/components/ui/api-list";
 
 // data初期のtypeの確認に使いました
 // import { Billboard } from "@prisma/client";
@@ -36,6 +37,8 @@ export const BillboardClient: React.FC<BillboardClientProps> = ({ data }) => {
       <Separator />
       {/* スペース */}
       <DataTable searchKey="label" columns={columns} data={data} />
+      <Heading title="API" description="画像 API" />
+      <ApiList entityName="billboards" entityIdName="billboardId" />
     </>
   );
 };
