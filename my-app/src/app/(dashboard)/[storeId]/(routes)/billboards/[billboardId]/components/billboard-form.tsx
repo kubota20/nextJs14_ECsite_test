@@ -30,7 +30,7 @@ import ImageUpload from "@/components/ui/image-upload";
 
 const formScheme = z.object({
   label: z.string().min(2, { message: "2文字以上を入力してください" }),
-  imageUrl: z.string().min(2, { message: "2文字以上を入力してください" }),
+  imageUrl: z.string().min(2, { message: "画像を入れて下さい" }),
 });
 
 interface BillboardFormPageProps {
