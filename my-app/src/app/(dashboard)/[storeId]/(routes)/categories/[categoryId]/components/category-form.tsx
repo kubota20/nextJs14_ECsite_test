@@ -76,17 +76,17 @@ const CategoryForm: React.FC<CategoryFormPageProps> = ({
       if (initiaData) {
         // 既存のデータを更新
         await axios.patch(
-          `/api/${params.storeId}/billboards/${params.billboardId}`,
+          `/api/${params.storeId}/categories/${params.categoryId}`,
           data
         );
       } else {
         // 新しいデータを作成
-        await axios.post(`/api/${params.storeId}/billboards`, data);
+        await axios.post(`/api/${params.storeId}/categories`, data);
       }
       // 中身の更新
       router.refresh();
-      // billboardsページに飛ぶ
-      router.push(`/${params.storeId}/billboards`);
+      // categoriesページに飛ぶ
+      router.push(`/${params.storeId}/categories`);
 
       toast.success(toastMessage);
     } catch (error) {
@@ -101,13 +101,13 @@ const CategoryForm: React.FC<CategoryFormPageProps> = ({
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/billboards/${params.billboardId}`
+        `/api/${params.storeId}/categories/${params.categoryId}`
       );
 
       router.refresh();
 
-      // 削除されたら画像ページに行き
-      router.push(`${params.storeId}/billboards`);
+      // 削除されたらカテゴリページに行き
+      router.push(`${params.storeId}/categories`);
       toast.success("削除されました");
     } catch (error) {
       toast.error("エラーが起きました");
