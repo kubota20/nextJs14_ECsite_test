@@ -23,9 +23,9 @@ export function MainNav({
       active: pathName === `/${params.storeId}/billboards`,
     },
     {
-      href: `/${params.storeId}/caregories`,
+      href: `/${params.storeId}/categories`,
       label: "カテゴリ",
-      active: pathName === `/${params.storeId}/caregories`,
+      active: pathName === `/${params.storeId}/categories`,
     },
     {
       href: `/${params.storeId}/settings`,

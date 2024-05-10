@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import * as z from "zod";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Billboard } from "@prisma/client";
+import { Category } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -26,41 +26,40 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import AlertModal from "@/components/modals/alert-modal";
-import ImageUpload from "@/components/ui/image-upload";
 
 const formScheme = z.object({
-  label: z.string().min(2, { message: "2文字以上を入力してください" }),
-  imageUrl: z.string().min(2, { message: "2文字以上を入力してください" }),
+  name: z.string().min(2, { message: "2文字以上を入力してください" }),
+  billboardId: z.string().min(2, { message: "2文字以上を入力してください" }),
 });
 
-interface BillboardFormPageProps {
-  initiaData: Billboard | null;
+interface CategoryFormPageProps {
+  initiaData: Category | null;
 }
 
-type BillboardFormValues = z.infer<typeof formScheme>;
+type CategoryFormValues = z.infer<typeof formScheme>;
 
-const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
+const CategoryForm: React.FC<CategoryFormPageProps> = ({ initiaData }) => {
   const params = useParams();
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initiaData ? "Edit billboard" : "Create billboard";
-  const description = initiaData ? "Edit a billboard" : "Add a new billboard";
-  const toastMessage = initiaData ? "Billboard updated" : "Billboard created";
+  const title = initiaData ? "Edit Category" : "Create Category";
+  const description = initiaData ? "Edit a Category" : "Add a new Category";
+  const toastMessage = initiaData ? "Category updated" : "Category created";
   const action = initiaData ? "Save changes" : "create";
 
-  const form = useForm<BillboardFormValues>({
+  const form = useForm<CategoryFormValues>({
     resolver: zodResolver(formScheme),
     defaultValues: initiaData || {
-      label: "",
-      imageUrl: "",
+      name: "",
+      billboardId: "",
     },
   });
 
   // 更新・作成
-  const onSubmit = async (data: BillboardFormValues) => {
+  const onSubmit = async (data: CategoryFormValues) => {
     try {
       setLoading(true);
       if (initiaData) {
@@ -134,39 +133,18 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
           onSubmit={form.handleSubmit(onSubmit)}
           className="space-y-8 w-full"
         >
-          {/* 画像のアップロード */}
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>imageUrl</FormLabel>
-                <FormControl>
-                  <ImageUpload
-                    value={field.value ? [field.value] : []}
-                    disabled={loading}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}
-                  />
-                </FormControl>
-                {/* エラーメッセージ */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
           {/* Label Input */}
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
-              name="label"
+              name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Label</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
-                      placeholder="Billboard Label"
+                      placeholder="カテゴリー名"
                       {...field}
                     />
                   </FormControl>
@@ -186,4 +164,4 @@ const BillboardForm: React.FC<BillboardFormPageProps> = ({ initiaData }) => {
   );
 };
 
-export default BillboardForm;
+export default CategoryForm;
