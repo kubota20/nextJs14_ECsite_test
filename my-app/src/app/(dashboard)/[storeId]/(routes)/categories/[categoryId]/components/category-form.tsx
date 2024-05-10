@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import * as z from "zod";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Category } from "@prisma/client";
+import { Category, Billboard } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -26,6 +26,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import AlertModal from "@/components/modals/alert-modal";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const formScheme = z.object({
   name: z.string().min(2, { message: "2文字以上を入力してください" }),
@@ -34,11 +41,15 @@ const formScheme = z.object({
 
 interface CategoryFormPageProps {
   initiaData: Category | null;
+  billboards: Billboard[];
 }
 
 type CategoryFormValues = z.infer<typeof formScheme>;
 
-const CategoryForm: React.FC<CategoryFormPageProps> = ({ initiaData }) => {
+const CategoryForm: React.FC<CategoryFormPageProps> = ({
+  initiaData,
+  billboards,
+}) => {
   const params = useParams();
   const router = useRouter();
 
@@ -148,6 +159,36 @@ const CategoryForm: React.FC<CategoryFormPageProps> = ({ initiaData }) => {
                       {...field}
                     />
                   </FormControl>
+                  {/* エラーメッセージ */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="billboardId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image Name</FormLabel>
+                  <Select
+                    disabled={loading}
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger defaultValue={field.value}>
+                        <SelectValue placeholder="画像名" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {billboards.map((billboard) => (
+                        <SelectItem key={billboard.id} value={billboard.id}>
+                          {billboard.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   {/* エラーメッセージ */}
                   <FormMessage />
                 </FormItem>
