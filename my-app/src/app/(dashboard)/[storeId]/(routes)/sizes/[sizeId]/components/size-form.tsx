@@ -30,7 +30,7 @@ import ImageUpload from "@/components/ui/image-upload";
 
 const formScheme = z.object({
   name: z.string().min(2, { message: "2文字以上を入力してください" }),
-  value: z.string().min(2, { message: "画像を入れて下さい" }),
+  value: z.string().min(2, { message: "2文字以上を入力してください" }),
 });
 
 interface SizeFormPageProps {
