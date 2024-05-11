@@ -61,7 +61,7 @@ export function DataTable<TData, TValue>({
       {/* 電子メールをフィルターするための検索入力 */}
       <div className="flex items-center py-4">
         <Input
-          placeholder="Labelを検索"
+          placeholder="検索"
           value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn(searchKey)?.setFilterValue(event.target.value)
