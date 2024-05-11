@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { BillboardColumnProps } from "./columns";
+import { CategoryColumnProps } from "./columns";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +18,7 @@ import axios from "axios";
 import AlertModal from "@/components/modals/alert-modal";
 
 interface CellActionProps {
-  data: BillboardColumnProps;
+  data: CategoryColumnProps;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
@@ -36,14 +36,14 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   // 変更Btnのリンク
   const onClickLink = () => {
-    router.push(`/${params.storeId}/billboards/${data.id}`);
+    router.push(`/${params.storeId}/categories/${data.id}`);
   };
 
   // 画像削除btn
   const onClickDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
 
       router.refresh();
 
