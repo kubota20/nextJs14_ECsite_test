@@ -152,10 +152,9 @@ const SizeForm: React.FC<SizeFormPageProps> = ({ initiaData }) => {
                 </FormItem>
               )}
             />
-          </div>
 
-          {/* value Input */}
-          <div className="grid grid-cols-3 gap-8">
+            {/* value Input */}
+
             <FormField
               control={form.control}
               name="value"
