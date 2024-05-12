@@ -36,14 +36,14 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
 
   // 変更Btnのリンク
   const onClickLink = () => {
-    router.push(`/${params.storeId}/billboards/${data.id}`);
+    router.push(`/${params.storeId}/products/${data.id}`);
   };
 
   // 画像削除btn
   const onClickDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboards/${data.id}`);
+      await axios.delete(`/api/${params.storeId}/products/${data.id}`);
 
       router.refresh();
 
