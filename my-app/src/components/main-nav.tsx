@@ -38,6 +38,11 @@ export function MainNav({
       active: pathName === `/${params.storeId}/colors`,
     },
     {
+      href: `/${params.storeId}/products`,
+      label: "プロダクト",
+      active: pathName === `/${params.storeId}/products`,
+    },
+    {
       href: `/${params.storeId}/settings`,
       label: "設定",
       active: pathName === `/${params.storeId}/setting`,
