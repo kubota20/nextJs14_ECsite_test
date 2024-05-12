@@ -19,6 +19,7 @@ import { Separator } from "@/components/ui/separator";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -34,6 +35,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const formScheme = z.object({
   name: z.string().min(2, { message: "2文字以上を入力してください" }),
@@ -192,14 +194,14 @@ const ProductForm: React.FC<ProductFormPageProps> = ({
             )}
           />
 
-          {/* Name Input */}
+          {/* Product Name */}
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Store Name</FormLabel>
                   <FormControl>
                     <Input
                       disabled={loading}
@@ -212,6 +214,8 @@ const ProductForm: React.FC<ProductFormPageProps> = ({
                 </FormItem>
               )}
             />
+
+            {/* Price */}
             <FormField
               control={form.control}
               name="price"
@@ -231,12 +235,13 @@ const ProductForm: React.FC<ProductFormPageProps> = ({
                 </FormItem>
               )}
             />
+            {/* Categories Name */}
             <FormField
               control={form.control}
               name="categoryId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>category</FormLabel>
+                  <FormLabel>Categories</FormLabel>
                   <Select
                     disabled={loading}
                     onValueChange={field.onChange}
@@ -261,12 +266,13 @@ const ProductForm: React.FC<ProductFormPageProps> = ({
                 </FormItem>
               )}
             />
+            {/* Sizes */}
             <FormField
               control={form.control}
               name="sizeId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Size</FormLabel>
+                  <FormLabel>Sizes</FormLabel>
                   <Select
                     disabled={loading}
                     onValueChange={field.onChange}
@@ -291,12 +297,13 @@ const ProductForm: React.FC<ProductFormPageProps> = ({
                 </FormItem>
               )}
             />
+            {/* Colors */}
             <FormField
               control={form.control}
               name="colorId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Color</FormLabel>
+                  <FormLabel>Colors</FormLabel>
                   <Select
                     disabled={loading}
                     onValueChange={field.onChange}
@@ -318,6 +325,48 @@ const ProductForm: React.FC<ProductFormPageProps> = ({
                   </Select>
                   {/* エラーメッセージ */}
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* オススメ商品 */}
+            <FormField
+              control={form.control}
+              name="isFeatured"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 ">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>オススメ商品</FormLabel>
+                    <FormDescription>
+                      オススメに商品にしますか？
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            {/* 保存 */}
+            <FormField
+              control={form.control}
+              name="isArchived"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 ">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>保存</FormLabel>
+                    <FormDescription>
+                      アーカイブに保存しますか？
+                    </FormDescription>
+                  </div>
                 </FormItem>
               )}
             />
