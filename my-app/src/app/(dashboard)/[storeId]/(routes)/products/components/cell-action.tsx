@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { BillboardColumnProps } from "./columns";
+import { ProductColumnProps } from "./columns";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,7 +18,7 @@ import axios from "axios";
 import AlertModal from "@/components/modals/alert-modal";
 
 interface CellActionProps {
-  data: BillboardColumnProps;
+  data: ProductColumnProps;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
