@@ -39,3 +39,24 @@ next.js や shadcn/ui を使った環境構築の流れは[ここで確認](md/s
 8, Prisma で Billboard テーブルを作成[ここで確認](my-app/prisma/schema.prisma)
 
 9, Billboard テーブルを使って API route を作ります[ここで確認](my-app/src/app/api/[storeId]/billboards)
+
+## 分からないところ
+
+- `ec-store/src/actons/get-categories.tsx`と`get-billboard.tsx`について、fetch API を使用して HTTP リクエストを送信する際に使用するリクエストオプションを定義した時に、`get-categories.tsx`ではリクエストオプションは ok でしないと Error`get-billboard.tsx`ではリクエストオプションは Error でしないと ok と違いが出ました。
+
+`Error内容`
+
+```
+    SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+    at JSON.parse (<anonymous>)
+    at AsyncResource.runInAsyncScope (node:async_hooks:206:9)
+
+```
+
+このエラーは、API からのレスポンスが JSON 形式でない場合に発生するみたいです。
+
+なので API エンドポイントを JSON 形式か調べました。どちらもレスポンスの Content-Type は application/json で JSON 形式でした。
+
+?何が違うのか...,
+
+`my-app/src/api`の中身を見ても問題はなく、まあ動くのでリクエストオプションはつけたり付けなかったりします。
