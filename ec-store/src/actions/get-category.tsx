@@ -4,7 +4,7 @@ const URL = `${process.env.NEXT_PUBLIC_API_URL}/categories`;
 
 export const getCategory = async (): Promise<Category> => {
   try {
-    const res = await fetch(URL, {
+    const res = await fetch(`${URL}/${id}`, {
       next: { revalidate: 0 },
     });
 
