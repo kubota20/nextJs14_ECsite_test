@@ -22,8 +22,7 @@ export const getProducts = async (query: Query): Promise<Product[]> => {
   });
   try {
     const res = await fetch(URL, {
-      // revalidate 時間ベースデータ検証 キャッシュの保存時間を60秒（1分）に指定
-      next: { revalidate: 60 },
+      next: { revalidate: 0 },
     });
 
     if (!res.ok) {
