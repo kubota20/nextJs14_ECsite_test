@@ -5,8 +5,8 @@ import { getBillboard } from "@/actions/get-billboard";
 import { getProducts } from "@/actions/get-products";
 
 const HomePage = async () => {
-  const products = await getProducts({ isFinite: true });
   const billboard = await getBillboard("ec3aaa06-6b5d-4a96-abd3-02c993c93a37");
+  const products = await getProducts({});
 
   return (
     <Container>

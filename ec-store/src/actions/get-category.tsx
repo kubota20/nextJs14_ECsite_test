@@ -8,9 +8,9 @@ export const getCategory = async (id: string): Promise<Category> => {
       next: { revalidate: 0 },
     });
 
-    if (!res.ok) {
-      throw new Error(`Fetch failed with status ${res.status}`);
-    }
+    // if (!res.ok) {
+    //   throw new Error(`Fetch failed with status ${res.status}`);
+    // }
 
     return res.json();
   } catch (error) {
