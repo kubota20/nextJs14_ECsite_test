@@ -8,6 +8,7 @@ import { jaJP } from "@clerk/localizations";
 
 import { cn } from "@/lib/utils";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -33,9 +34,11 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          {children}
-          <ToasterProvider />
-          <ModalProvider />
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            {children}
+            <ToasterProvider />
+            <ModalProvider />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
